@@ -52,10 +52,34 @@
         .game-card img {
             width: 100%;
             height: 160px;
+            object-fit: cover;
+            display: block;
             border-radius: 10px 10px 0 0;
         }
         .game-card h3 {
-            margin-top: 10px;
+            margin: 10px 8px 0;
+            font-size: 17px;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        .game-card {
+            transition: transform 0.15s, box-shadow 0.15s;
+            vertical-align: top;
+        }
+        #game-filter {
+            width: 100%;
+            max-width: 420px;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        #game-count {
+            margin: 0 0 10px;
+            opacity: 0.85;
         }
         footer {
             background-color: #5e3b8f;
@@ -85,6 +109,20 @@
                 iframe.remove(); // closes the iframe once you click (remove this if not wanted)
             };
         }
+
+        function filterGames(query) {
+            const q = query.trim().toLowerCase();
+            const cards = document.querySelectorAll('.game-card');
+            let shown = 0;
+            cards.forEach(card => {
+                const match = card.querySelector('h3').textContent.toLowerCase().includes(q);
+                card.style.display = match ? '' : 'none';
+                if (match) shown++;
+            });
+            document.getElementById('game-count').textContent = shown + ' of ' + cards.length + ' games';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => filterGames(''));
     </script>
 </head>
 <body>
@@ -94,26 +132,408 @@
     </header>
     <div class="section">
         <h2>Games</h2> <!-- change this to what you want above ur games -->
+        <input type="search" id="game-filter" placeholder="Filter games by name..." oninput="filterGames(this.value)" aria-label="Filter games">
+        <p id="game-count"></p>
         <div class="game-card" onclick="openFullscreen('https://krunker.io/')"> 
-            <img src="https://via.placeholder.com/200x160" alt="Krunker.io">
+            <img src="/.netlify/images?url=/images/krunker.jpg&w=400&h=320&fit=cover" alt="Krunker.io" loading="lazy">
             <h3>Krunker.io</h3>
         </div>
         <div class="game-card" onclick="openFullscreen('https://agar.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Agar.io">
+            <img src="/.netlify/images?url=/images/agar.jpg&w=400&h=320&fit=cover" alt="Agar.io" loading="lazy">
             <h3>Agar.io</h3>
         </div>
         <div class="game-card" onclick="openFullscreen('https://slither.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Slither.io">
+            <img src="/.netlify/images?url=/images/slither.jpg&w=400&h=320&fit=cover" alt="Slither.io" loading="lazy">
             <h3>Slither.io</h3>
         </div>
         <div class="game-card" onclick="openFullscreen('https://shellshock.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Shell Shockers">
+            <img src="/.netlify/images?url=/images/shellshock.webp&w=400&h=320&fit=cover" alt="Shell Shockers" loading="lazy">
             <h3>Shell Shockers</h3>
         </div>
         <div class="game-card" onclick="openFullscreen('https://diep.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Diep.io">
+            <img src="/.netlify/images?url=/images/diep.png&w=400&h=320&fit=cover" alt="Diep.io" loading="lazy">
             <h3>Diep.io</h3>
             <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.tetris.com/play-tetris')">
+            <img src="/.netlify/images?url=/images/tetris.jpg&w=400&h=320&fit=cover" alt="Tetris" loading="lazy">
+            <h3>Tetris</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://zombsroyale.io/')">
+            <img src="/.netlify/images?url=/images/zombsroyale.jpg&w=400&h=320&fit=cover" alt="ZombsRoyale.io" loading="lazy">
+            <h3>ZombsRoyale.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://skribbl.io/')">
+            <img src="/.netlify/images?url=/images/skribbl.png&w=400&h=320&fit=cover" alt="Skribbl.io" loading="lazy">
+            <h3>Skribbl.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://smashkarts.io/')">
+            <img src="/.netlify/images?url=/images/smashkarts.png&w=400&h=320&fit=cover" alt="Smash Karts" loading="lazy">
+            <h3>Smash Karts</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://ev.io/')">
+            <img src="/.netlify/images?url=/images/evio.jpg&w=400&h=320&fit=cover" alt="EV.io" loading="lazy">
+            <h3>EV.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://mope.io/')">
+            <img src="/.netlify/images?url=/images/mope.webp&w=400&h=320&fit=cover" alt="Mope.io" loading="lazy">
+            <h3>Mope.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://yohoho.io/')">
+            <img src="/.netlify/images?url=/images/yohoho.jpg&w=400&h=320&fit=cover" alt="Yohoho.io" loading="lazy">
+            <h3>Yohoho.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://defly.io/')">
+            <img src="/.netlify/images?url=/images/defly.png&w=400&h=320&fit=cover" alt="Defly.io" loading="lazy">
+            <h3>Defly.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://powerline.io/')">
+            <img src="/.netlify/images?url=/images/powerline.png&w=400&h=320&fit=cover" alt="Powerline.io" loading="lazy">
+            <h3>Powerline.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://hexgl.bkcore.com/play/')">
+            <img src="/.netlify/images?url=/images/hexgl.jpg&w=400&h=320&fit=cover" alt="HexGL" loading="lazy">
+            <h3>HexGL</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://littlealchemy2.com/')">
+            <img src="/.netlify/images?url=/images/littlealchemy2.jpg&w=400&h=320&fit=cover" alt="Little Alchemy 2" loading="lazy">
+            <h3>Little Alchemy 2</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://chromedino.com/')">
+            <img src="/.netlify/images?url=/images/chromedino.jpg&w=400&h=320&fit=cover" alt="Chrome Dino" loading="lazy">
+            <h3>Chrome Dino</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://sandspiel.club/')">
+            <img src="/.netlify/images?url=/images/sandspiel.png&w=400&h=320&fit=cover" alt="Sandspiel" loading="lazy">
+            <h3>Sandspiel</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://adarkroom.doublespeakgames.com/')">
+            <img src="/.netlify/images?url=/images/a-dark-room.png&w=400&h=320&fit=cover" alt="A Dark Room" loading="lazy">
+            <h3>A Dark Room</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://bloxd.io/')">
+            <img src="/.netlify/images?url=/images/bloxd-io.jpg&w=400&h=320&fit=cover" alt="Bloxd.io" loading="lazy">
+            <h3>Bloxd.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://copter.io/')">
+            <img src="/.netlify/images?url=/images/copter-io.jpg&w=400&h=320&fit=cover" alt="Copter.io" loading="lazy">
+            <h3>Copter.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://cryzen.io/')">
+            <img src="/.netlify/images?url=/images/cryzen-io.webp&w=400&h=320&fit=cover" alt="Cryzen.io" loading="lazy">
+            <h3>Cryzen.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://curvefever.pro/')">
+            <img src="/.netlify/images?url=/images/curve-fever-pro.jpg&w=400&h=320&fit=cover" alt="Curve Fever Pro" loading="lazy">
+            <h3>Curve Fever Pro</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://deadshot.io/')">
+            <img src="/.netlify/images?url=/images/deadshot-io.jpg&w=400&h=320&fit=cover" alt="Deadshot.io" loading="lazy">
+            <h3>Deadshot.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://dynast.io/')">
+            <img src="/.netlify/images?url=/images/dynast-io.jpg&w=400&h=320&fit=cover" alt="Dynast.io" loading="lazy">
+            <h3>Dynast.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://flappybird.io/')">
+            <img src="/.netlify/images?url=/images/flappy-bird.png&w=400&h=320&fit=cover" alt="Flappy Bird" loading="lazy">
+            <h3>Flappy Bird</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://gabrielecirulli.github.io/2048/')">
+            <img src="/.netlify/images?url=/images/2048.png&w=400&h=320&fit=cover" alt="2048" loading="lazy">
+            <h3>2048</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://globle-game.com/')">
+            <img src="/.netlify/images?url=/images/globle.png&w=400&h=320&fit=cover" alt="Globle" loading="lazy">
+            <h3>Globle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://hexanaut.io/')">
+            <img src="/.netlify/images?url=/images/hexanaut-io.jpg&w=400&h=320&fit=cover" alt="Hexanaut.io" loading="lazy">
+            <h3>Hexanaut.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://krew.io/')">
+            <img src="/.netlify/images?url=/images/krew-io.jpg&w=400&h=320&fit=cover" alt="Krew.io" loading="lazy">
+            <h3>Krew.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://littlebigsnake.com/')">
+            <img src="/.netlify/images?url=/images/little-big-snake.jpg&w=400&h=320&fit=cover" alt="Little Big Snake" loading="lazy">
+            <h3>Little Big Snake</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://lolbeans.io/')">
+            <img src="/.netlify/images?url=/images/lolbeans-io.jpg&w=400&h=320&fit=cover" alt="LOLBeans.io" loading="lazy">
+            <h3>LOLBeans.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://lordz.io/')">
+            <img src="/.netlify/images?url=/images/lordz-io.png&w=400&h=320&fit=cover" alt="Lordz.io" loading="lazy">
+            <h3>Lordz.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://minesweeper.online/')">
+            <img src="/.netlify/images?url=/images/minesweeper-online.png&w=400&h=320&fit=cover" alt="Minesweeper Online" loading="lazy">
+            <h3>Minesweeper Online</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://miniblox.io/')">
+            <img src="/.netlify/images?url=/images/miniblox.jpg&w=400&h=320&fit=cover" alt="Miniblox" loading="lazy">
+            <h3>Miniblox</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://mk48.io/')">
+            <img src="/.netlify/images?url=/images/mk48-io.png&w=400&h=320&fit=cover" alt="mk48.io" loading="lazy">
+            <h3>mk48.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://nerdlegame.com/')">
+            <img src="/.netlify/images?url=/images/nerdle.png&w=400&h=320&fit=cover" alt="Nerdle" loading="lazy">
+            <h3>Nerdle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://repuls.io/')">
+            <img src="/.netlify/images?url=/images/repuls-io.jpg&w=400&h=320&fit=cover" alt="Repuls.io" loading="lazy">
+            <h3>Repuls.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://sandboxels.r74n.com/')">
+            <img src="/.netlify/images?url=/images/sandboxels.png&w=400&h=320&fit=cover" alt="Sandboxels" loading="lazy">
+            <h3>Sandboxels</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://semantle.com/')">
+            <img src="/.netlify/images?url=/images/semantle.png&w=400&h=320&fit=cover" alt="Semantle" loading="lazy">
+            <h3>Semantle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://splix.io/')">
+            <img src="/.netlify/images?url=/images/splix-io.png&w=400&h=320&fit=cover" alt="Splix.io" loading="lazy">
+            <h3>Splix.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://sploop.io/')">
+            <img src="/.netlify/images?url=/images/sploop-io.jpg&w=400&h=320&fit=cover" alt="Sploop.io" loading="lazy">
+            <h3>Sploop.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://stabfish.io/')">
+            <img src="/.netlify/images?url=/images/stabfish-io.jpg&w=400&h=320&fit=cover" alt="Stabfish.io" loading="lazy">
+            <h3>Stabfish.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://starblast.io/')">
+            <img src="/.netlify/images?url=/images/starblast-io.jpg&w=400&h=320&fit=cover" alt="Starblast.io" loading="lazy">
+            <h3>Starblast.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://warbot.io/')">
+            <img src="/.netlify/images?url=/images/warbot-io.jpg&w=400&h=320&fit=cover" alt="Warbot.io" loading="lazy">
+            <h3>Warbot.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://wings.io/')">
+            <img src="/.netlify/images?url=/images/wings-io.png&w=400&h=320&fit=cover" alt="Wings.io" loading="lazy">
+            <h3>Wings.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://wordleunlimited.org/')">
+            <img src="/.netlify/images?url=/images/wordle-unlimited.png&w=400&h=320&fit=cover" alt="Wordle Unlimited" loading="lazy">
+            <h3>Wordle Unlimited</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://worldle.teuteuf.fr/')">
+            <img src="/.netlify/images?url=/images/worldle.jpg&w=400&h=320&fit=cover" alt="Worldle" loading="lazy">
+            <h3>Worldle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://wormate.io/')">
+            <img src="/.netlify/images?url=/images/wormate-io.jpg&w=400&h=320&fit=cover" alt="Wormate.io" loading="lazy">
+            <h3>Wormate.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.freeriderhd.com/')">
+            <img src="/.netlify/images?url=/images/free-rider-hd.png&w=400&h=320&fit=cover" alt="Free Rider HD" loading="lazy">
+            <h3>Free Rider HD</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.linerider.com/')">
+            <img src="/.netlify/images?url=/images/line-rider.png&w=400&h=320&fit=cover" alt="Line Rider" loading="lazy">
+            <h3>Line Rider</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://zombs.io/')">
+            <img src="/.netlify/images?url=/images/zombs-io.png&w=400&h=320&fit=cover" alt="Zombs.io" loading="lazy">
+            <h3>Zombs.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://brutal.io/')">
+            <img src="/.netlify/images?url=/images/brutal-io.png&w=400&h=320&fit=cover" alt="Brutal.io" loading="lazy">
+            <h3>Brutal.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://buildroyale.io/')">
+            <img src="/.netlify/images?url=/images/build-royale.png&w=400&h=320&fit=cover" alt="Build Royale" loading="lazy">
+            <h3>Build Royale</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://fishington.io/')">
+            <img src="/.netlify/images?url=/images/fishington-io.jpg&w=400&h=320&fit=cover" alt="Fishington.io" loading="lazy">
+            <h3>Fishington.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://framed.wtf/')">
+            <img src="/.netlify/images?url=/images/framed.jpg&w=400&h=320&fit=cover" alt="Framed" loading="lazy">
+            <h3>Framed</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://generals.io/')">
+            <img src="/.netlify/images?url=/images/generals-io.png&w=400&h=320&fit=cover" alt="Generals.io" loading="lazy">
+            <h3>Generals.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://grindcraft.com/')">
+            <img src="/.netlify/images?url=/images/grindcraft.png&w=400&h=320&fit=cover" alt="GrindCraft" loading="lazy">
+            <h3>GrindCraft</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://narrow.one/')">
+            <img src="/.netlify/images?url=/images/narrow-one.jpg&w=400&h=320&fit=cover" alt="Narrow One" loading="lazy">
+            <h3>Narrow One</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://orb.farm/')">
+            <img src="/.netlify/images?url=/images/orb-farm.jpg&w=400&h=320&fit=cover" alt="Orb.Farm" loading="lazy">
+            <h3>Orb.Farm</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://squaredle.app/')">
+            <img src="/.netlify/images?url=/images/squaredle.png&w=400&h=320&fit=cover" alt="Squaredle" loading="lazy">
+            <h3>Squaredle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://suroi.io/')">
+            <img src="/.netlify/images?url=/images/suroi.jpg&w=400&h=320&fit=cover" alt="Suroi" loading="lazy">
+            <h3>Suroi</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://survev.io/')">
+            <img src="/.netlify/images?url=/images/survev-io.jpg&w=400&h=320&fit=cover" alt="Survev.io" loading="lazy">
+            <h3>Survev.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://travle.earth/')">
+            <img src="/.netlify/images?url=/images/travle.png&w=400&h=320&fit=cover" alt="Travle" loading="lazy">
+            <h3>Travle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://warbrokers.io/')">
+            <img src="/.netlify/images?url=/images/war-brokers.jpg&w=400&h=320&fit=cover" alt="War Brokers" loading="lazy">
+            <h3>War Brokers</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://worldguessr.com/')">
+            <img src="/.netlify/images?url=/images/worldguessr.jpg&w=400&h=320&fit=cover" alt="WorldGuessr" loading="lazy">
+            <h3>WorldGuessr</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.flagle.io/')">
+            <img src="/.netlify/images?url=/images/flagle.png&w=400&h=320&fit=cover" alt="Flagle" loading="lazy">
+            <h3>Flagle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://classic.minecraft.net/')">
+            <img src="/.netlify/images?url=/images/minecraft-classic.png&w=400&h=320&fit=cover" alt="Minecraft Classic" loading="lazy">
+            <h3>Minecraft Classic</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://bonk.io/')">
+            <img src="/.netlify/images?url=/images/bonk-io.png&w=400&h=320&fit=cover" alt="Bonk.io" loading="lazy">
+            <h3>Bonk.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://territorial.io/')">
+            <img src="/.netlify/images?url=/images/territorial-io.jpg&w=400&h=320&fit=cover" alt="Territorial.io" loading="lazy">
+            <h3>Territorial.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://kirka.io/')">
+            <img src="/.netlify/images?url=/images/kirka-io.png&w=400&h=320&fit=cover" alt="Kirka.io" loading="lazy">
+            <h3>Kirka.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://rocketbotroyale.winterpixel.io/')">
+            <img src="/.netlify/images?url=/images/rocket-bot-royale.jpg&w=400&h=320&fit=cover" alt="Rocket Bot Royale" loading="lazy">
+            <h3>Rocket Bot Royale</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.decisionproblem.com/paperclips/index2.html')">
+            <img src="/.netlify/images?url=/images/universal-paperclips.png&w=400&h=320&fit=cover" alt="Universal Paperclips" loading="lazy">
+            <h3>Universal Paperclips</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://candybox2.github.io/')">
+            <img src="/.netlify/images?url=/images/candy-box-2.png&w=400&h=320&fit=cover" alt="Candy Box 2" loading="lazy">
+            <h3>Candy Box 2</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://kittensgame.com/web/')">
+            <img src="/.netlify/images?url=/images/kittens-game.png&w=400&h=320&fit=cover" alt="Kittens Game" loading="lazy">
+            <h3>Kittens Game</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://trimps.github.io/')">
+            <img src="/.netlify/images?url=/images/trimps.png&w=400&h=320&fit=cover" alt="Trimps" loading="lazy">
+            <h3>Trimps</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://arras.io/')">
+            <img src="/.netlify/images?url=/images/arras-io.png&w=400&h=320&fit=cover" alt="Arras.io" loading="lazy">
+            <h3>Arras.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://yorg.io/')">
+            <img src="/.netlify/images?url=/images/yorg-io.png&w=400&h=320&fit=cover" alt="Yorg.io" loading="lazy">
+            <h3>Yorg.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://hordes.io/')">
+            <img src="/.netlify/images?url=/images/hordes-io.png&w=400&h=320&fit=cover" alt="Hordes.io" loading="lazy">
+            <h3>Hordes.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://evowars.io/')">
+            <img src="/.netlify/images?url=/images/evowars-io.png&w=400&h=320&fit=cover" alt="EvoWars.io" loading="lazy">
+            <h3>EvoWars.io</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://littlewargame.com/')">
+            <img src="/.netlify/images?url=/images/littlewargame.png&w=400&h=320&fit=cover" alt="Littlewargame" loading="lazy">
+            <h3>Littlewargame</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.octordle.com/')">
+            <img src="/.netlify/images?url=/images/octordle.png&w=400&h=320&fit=cover" alt="Octordle" loading="lazy">
+            <h3>Octordle</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/chess.html')">
+            <img src="/.netlify/images?url=/images/chess.png&w=400&h=320&fit=cover" alt="Chess" loading="lazy">
+            <h3>Chess</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/checkers-2.html')">
+            <img src="/.netlify/images?url=/images/checkers.png&w=400&h=320&fit=cover" alt="Checkers" loading="lazy">
+            <h3>Checkers</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/connect4.html')">
+            <img src="/.netlify/images?url=/images/connect-4.png&w=400&h=320&fit=cover" alt="Connect 4" loading="lazy">
+            <h3>Connect 4</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/battleship.html')">
+            <img src="/.netlify/images?url=/images/battleship.png&w=400&h=320&fit=cover" alt="Battleship" loading="lazy">
+            <h3>Battleship</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/breakout.html')">
+            <img src="/.netlify/images?url=/images/breakout.png&w=400&h=320&fit=cover" alt="Breakout" loading="lazy">
+            <h3>Breakout</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/dots-and-boxes.html')">
+            <img src="/.netlify/images?url=/images/dots-and-boxes.png&w=400&h=320&fit=cover" alt="Dots and Boxes" loading="lazy">
+            <h3>Dots and Boxes</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/freecell.html')">
+            <img src="/.netlify/images?url=/images/freecell.jpg&w=400&h=320&fit=cover" alt="FreeCell" loading="lazy">
+            <h3>FreeCell</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/hangman.html')">
+            <img src="/.netlify/images?url=/images/hangman.png&w=400&h=320&fit=cover" alt="Hangman" loading="lazy">
+            <h3>Hangman</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/mancala.html')">
+            <img src="/.netlify/images?url=/images/mancala.png&w=400&h=320&fit=cover" alt="Mancala" loading="lazy">
+            <h3>Mancala</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/reversi.html')">
+            <img src="/.netlify/images?url=/images/reversi.png&w=400&h=320&fit=cover" alt="Reversi" loading="lazy">
+            <h3>Reversi</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/sokoban.html')">
+            <img src="/.netlify/images?url=/images/sokoban.png&w=400&h=320&fit=cover" alt="Sokoban" loading="lazy">
+            <h3>Sokoban</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/sudoku.html')">
+            <img src="/.netlify/images?url=/images/sudoku.png&w=400&h=320&fit=cover" alt="Sudoku" loading="lazy">
+            <h3>Sudoku</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/tic-tac-toe.html')">
+            <img src="/.netlify/images?url=/images/tic-tac-toe.png&w=400&h=320&fit=cover" alt="Tic-Tac-Toe" loading="lazy">
+            <h3>Tic-Tac-Toe</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/word-search.html')">
+            <img src="/.netlify/images?url=/images/word-search.png&w=400&h=320&fit=cover" alt="Word Search" loading="lazy">
+            <h3>Word Search</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/klondike.html')">
+            <img src="/.netlify/images?url=/images/klondike-solitaire.jpg&w=400&h=320&fit=cover" alt="Klondike Solitaire" loading="lazy">
+            <h3>Klondike Solitaire</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/spider.html')">
+            <img src="/.netlify/images?url=/images/spider-solitaire.jpg&w=400&h=320&fit=cover" alt="Spider Solitaire" loading="lazy">
+            <h3>Spider Solitaire</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/mahjong.html')">
+            <img src="/.netlify/images?url=/images/mahjong-solitaire.png&w=400&h=320&fit=cover" alt="Mahjong Solitaire" loading="lazy">
+            <h3>Mahjong Solitaire</h3>
+        </div>
+        <div class="game-card" onclick="openFullscreen('https://www.mathsisfun.com/games/tanks.html')">
+            <img src="/.netlify/images?url=/images/tanks.png&w=400&h=320&fit=cover" alt="Tanks" loading="lazy">
+            <h3>Tanks</h3>
         </div>
     </div>
     <footer>
